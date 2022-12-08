@@ -1,8 +1,10 @@
 import requests as rq
+import apikeys
 
-SH_ID = ""
-SH_KEY = ""
+SH_ID = apikeys.SH_ID
+SH_KEY = apikeys.SH_KEY
 SH_ENDPOINT = f"https://api.sheety.co/{SH_ID}/flightDeals/prices"
+CLUB_ENDPOINT = f"https://api.sheety.co/{SH_ID}/flightDeals/users"
 
 sh_header = {
     "Authorization": SH_KEY
@@ -12,6 +14,7 @@ sh_header = {
 class DataManager:
     def __init__(self):
         self.destination_data = {}
+        self.club_members = {}
 
     def get_city(self):
         city_response = rq.get(url=SH_ENDPOINT, headers=sh_header)
@@ -28,3 +31,8 @@ class DataManager:
             }
             response = rq.put(url=f"{SH_ENDPOINT}/{city['id']}", json=iata_body, headers=sh_header)
             print(response.text)
+
+    def fetch_club_members(self):
+        club_response = rq.get(url=CLUB_ENDPOINT, headers=sh_header)
+        self.club_members = club_response.json()
+        return self.club_members

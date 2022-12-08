@@ -1,13 +1,14 @@
 import requests as rq
 import datetime as dt
 from flight_data import FlightData
+import apikeys
 
 today_day = dt.datetime.now().strftime("%d/%m/%Y")
 end_day = (dt.datetime.now() + dt.timedelta(days=180)).strftime("%d/%m/%Y")
 
 
-TQ_ENDPOINT ="https://tequila-api.kiwi.com/v2/search"
-TQ_API_KEY = ""
+TQ_ENDPOINT = "https://tequila-api.kiwi.com/v2/search"
+TQ_API_KEY = apikeys.TQ_API_KEY
 
 tq_header = {
     "apikey": TQ_API_KEY

@@ -1,8 +1,12 @@
-import os
 import requests as rq
+import apikeys
 
-SH_KEY = os.environ['SH_KEY']
-SH_ID = os.environ['SH_ID']
+# import os
+# SH_KEY = os.environ['SH_KEY']
+# SH_ID = os.environ['SH_ID']
+
+SH_KEY = apikeys.SH_KEY
+SH_ID = apikeys.SH_ID
 
 SH_ENDPOINT = f"https://api.sheety.co/{SH_ID}/flightDeals/users"
 
